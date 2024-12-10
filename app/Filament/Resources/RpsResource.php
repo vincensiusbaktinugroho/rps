@@ -32,12 +32,17 @@ class RpsResource extends Resource
             Forms\Components\Section::make('Awalan')
                 ->description('Nav Konten lah.')
                 ->schema([
-            Forms\Components\Select::make('mata_kuliah_id')
-                ->label('Nama Mata Kuliah')
-                ->relationship(name: 'Matakuliah', titleAttribute: 'nama')
-                ->searchable()
-                ->preload()
-                ->required(),
+            // Forms\Components\Select::make('mata_kuliah_id')
+            //     ->label('Nama Mata Kuliah')
+            //     ->relationship(name: 'Matakuliah', titleAttribute: 'nama')
+            //     ->searchable()
+            //     ->preload()
+            //     ->required(),
+
+            Forms\Components\TextInput::make('nama_mk')
+            ->label('Nama Matakuliah')
+            ->nullable()
+            ->maxLength(255),
 
             Forms\Components\TextInput::make('kode')
                 ->label('Kode RPS')
@@ -150,10 +155,38 @@ class RpsResource extends Resource
                 ->schema([
             Forms\Components\TextInput::make('matakuliah_syarat')
                 ->label('Mata Kuliah Syarat')
-                ->nullable()
+                ->nullable(false)
                 ->maxLength(255),
                 ]),
 
+//edit baru untuk menambahkan subcpmk agar tidak dipisah
+                Forms\Components\Section::make('Sub_CPMK')
+                ->description('Tentang Pustaka Yang digunakan.')
+                ->schema([
+
+                Forms\Components\TextInput::make('minggu_ke')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\Textarea::make('sub_cpmk')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('materi_pembelajaran')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('metode_pembelajaran')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('assessment_indikator')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('assessment_bentuk')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('assessment_bobot')
+                    ->required()
+                    ->numeric(),
+                ]),
+//end dari subcpmk yg baru ditambahkan
             ]);
     }
 
@@ -161,9 +194,7 @@ class RpsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('mata_kuliah_id')
-                ->searchable(),
-                Tables\Columns\TextColumn::make('nama')
+                Tables\Columns\TextColumn::make('nama_mk')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('kode')
                 ->searchable(),
@@ -185,6 +216,11 @@ class RpsResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+
+                // Action::make('Download Pdf')
+                // ->icon ('heroicon-o-document-download')
+                // ->link(fn (Rps $record) => route ('rps.pdf.download', $record))
+                // ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

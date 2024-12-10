@@ -28,9 +28,9 @@ class Rps extends Model
     //     'matakuliah_syarat'
     // ];
 
-        public function Matakuliah()
-        {
-            return $this->belongsTo(MataKuliah::class);
-        }
+        // public function Matakuliah()
+        // {
+        //     return $this->belongsTo(MataKuliah::class);
+        // }
 }
 

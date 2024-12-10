@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('rps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mata_kuliah_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('mata_kuliah_id')->constrained()->cascadeOnDelete();
+            $table->string('nama_mk');
             $table->string('kode');
             $table->string('rumpun_mk');
             $table->integer('bobot_sks');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('pengembang_rps');
             $table->string('koordinator_rmk');
             $table->string('ketua_prodi');
-            $table->string('cpl_prodi_id');
+            $table->text('cpl_prodi_id');
             $table->text('cp_matakuliah');
             $table->text('deskripsi_mk');
             $table->text('pustaka_utama');
@@ -31,6 +32,15 @@ return new class extends Migration
             $table->text('media_perangkat_keras');
             $table->text('team_teaching');
             $table->text('matakuliah_syarat');
+            //percobaan penambahan sub-cpmk agar tidak dipisah
+            $table->integer('minggu_ke');
+            $table->text('sub_cpmk');
+            $table->text('materi_pembelajaran');
+            $table->text('metode_pembelajaran');
+            $table->text('assessment_indikator');
+            $table->text('assessment_bentuk');
+            $table->decimal('assessment_bobot', 5, 2);
+            //end sub
             $table->timestamps();
         });
     }
