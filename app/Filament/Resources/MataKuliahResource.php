@@ -60,7 +60,7 @@ class MataKuliahResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextxColumn::make('kode')
+                Tables\Columns\TextColumn::make('kode')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                 ->searchable(),
