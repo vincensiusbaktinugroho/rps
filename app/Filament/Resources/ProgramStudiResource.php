@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProgramStudiResource extends Resource
 {
-    protected static ?string $model = ProgramStudi::class;
+    protected static ?string $mxodel = ProgramStudi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 

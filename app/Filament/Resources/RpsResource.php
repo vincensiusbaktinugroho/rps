@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RpsResource extends Resource
 {
-    protected static ?string $model = Rps::class;
+    protected static ?string $moxdel = Rps::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -30,7 +30,7 @@ class RpsResource extends Resource
         return $form
             ->schema([
             Forms\Components\Section::make('Awalan')
-                ->description('Nav Konten lah.')
+                ->descxription('Nav Konten lah.')
                 ->schema([
             // Forms\Components\Select::make('mata_kuliah_id')
             //     ->label('Nama Mata Kuliah')
